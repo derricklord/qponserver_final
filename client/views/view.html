@@ -1,0 +1,94 @@
+
+<style>
+.frame{
+	height: 667px;
+	width: 325px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	border-radius: 5px;
+}
+.view_section{
+	width: 325px;
+}
+
+.logo{
+	height: 114px;
+	background-color: white;
+	background: url('./uploads/{{coupon.vendor_logo}}') no-repeat cover;
+	padding: 5px;
+}
+
+.logo_img{
+	text-align: center;
+	margin: auto;
+	height: 90%;
+	width: 90%;
+}
+
+.photo{
+	height: 210px;
+	background-color: gray;
+	background: url('./uploads/{{coupon.img}}') center;
+}
+.offer{
+	height: 100px;
+	background-color: green;
+	padding: 5px;
+}
+.details{
+	padding: 5px;
+}
+</style>
+
+<div class="row">
+	<div class="frame col-md-6">
+		<div class="row view_section logo" >
+			<img class="logo_img" ng-src="./uploads/{{coupon.vendor_logo}}" />
+		</div>
+
+		<div class="row view_section photo">
+		</div>
+
+		<div class="row view_section offer">
+			<span style="color:white; font-size: 18px;">{{coupon.title}}</br>
+				<small style="font-size:16px;">exp. {{ coupon.expiration| date:'shortDate' }}</small>
+			</span>
+		</div>
+
+		<div class="row view_section details">
+			<h4>{{coupon.vendor}}</h4>
+			<p>{{coupon.locations[0].address}}</p>
+			<h4>{{coupon.vendor_phone}}</h4>
+			<p>{{coupon.vendor_url}}</p>
+			<p>{{coupon.desc}}</p>
+			<small>{{coupon.desc2}}</small>
+		</div>
+	</div>
+	<div class="col-md-6">
+
+		<h2>Total Views: {{log.totalViews}}</h2>
+		<h4>Web Views: {{log.webViews}}</h4>
+		<h4>Mobile Views: {{log.mobileViews}}</h4>
+		<p> <a class="btn btn-primary" ui-sref="home">Home</a></p>
+		<table datatable="ng" class="row-border hover" ng-cloak>
+		        <thead>
+		                <tr>
+		                        <th>Actions</th>
+		                        <th>Date</th>
+		                        <th>Valid</th>
+		                </tr>
+		        </thead>
+		        <tbody>
+		                <tr ng-repeat="entry in log.data">
+		                        <td>{{entry.action}}</td>
+		                        <td>{{ entry.createdAt| date:'medium' }}</td>
+		                        <td>{{entry.valid}}</td>
+
+		                </tr>
+		        </tbody>
+		</table> 
+	</div>
+		
+	</div>
+</style>
